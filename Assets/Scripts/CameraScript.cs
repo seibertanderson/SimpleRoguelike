@@ -12,6 +12,25 @@ public class CameraScript : MonoBehaviour
     public float smoothTimeX = .2f;
     public float smoothTimeY = .2f;
 
+    static bool created = false;
+    void Awake()
+    {
+        if (!created)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            created = true;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void Start()
+    {
+
+    }
+
     private void FixedUpdate()
     {
         float posX = Mathf.SmoothDamp(transform.position.x, player.position.x, ref velocity.x, smoothTimeX);

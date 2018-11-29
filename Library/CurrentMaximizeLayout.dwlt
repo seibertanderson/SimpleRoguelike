@@ -21,10 +21,10 @@ MonoBehaviour:
     y: 30
     width: 1360
     height: 646
-  m_MinSize: {x: 711, y: 471}
-  m_MaxSize: {x: 18006, y: 14021}
+  m_MinSize: {x: 713, y: 492}
+  m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 7774
+  controlID: 4884
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -122,10 +122,10 @@ MonoBehaviour:
     y: 0
     width: 738
     height: 646
-  m_MinSize: {x: 230, y: 471}
-  m_MaxSize: {x: 10000, y: 14021}
+  m_MinSize: {x: 232, y: 492}
+  m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 7633
+  controlID: 4844
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -181,14 +181,14 @@ MonoBehaviour:
     height: 308
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 0
-  lastFramingTime: 1632.9118576626322
+  lastFramingTime: 1956.211862281226
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 269.1043, y: 21.25175, z: 0}
+    m_Target: {x: 6.25027, y: 3.2925663, z: -0.012621043}
     speed: 2
-    m_Value: {x: 269.1043, y: 21.25175, z: 0}
+    m_Value: {x: 6.25027, y: 3.2925663, z: -0.012621043}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -216,9 +216,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 81.67084
+    m_Target: 2.6149986
     speed: 2
-    m_Value: 81.67084
+    m_Value: 2.6149986
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -367,19 +367,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Sprites
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Sprites
+  - Assets/Scenes
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Anderson\Desktop\SimpleRoguelike
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ba270000
-    m_LastClickedID: 10170
-    m_ExpandedIDs: 000000006e270000b0270000ba27000000ca9a3bffffff7f
+    m_SelectedIDs: b0270000
+    m_LastClickedID: 10160
+    m_ExpandedIDs: 000000006e270000be27000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -407,7 +407,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006e270000b0270000ba27000000ca9a3bffffff7f
+    m_ExpandedIDs: 000000006e270000be27000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -432,8 +432,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: a4280000
-    m_LastClickedInstanceID: 10404
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: fa32fdffbe270000a0fc1000b628000062c5f3ff4c280000c43cfcff4a360000188100005e380000684900009c36000044a2010078d5000000000000a2bcffff8e30000062abf8ffde22ffff882a0000
     m_RenameOverlay:
@@ -517,9 +517,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a4280000
-    m_LastClickedID: 10404
-    m_ExpandedIDs: 9cfbffff000000002628000084280000
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: f8acfeffb4bffeff18c6feffc8d2feff8c18ffffe026ffff1c29ffff1632ffffe637ffff543cffff9e3ffffffc43ffffe645ffffdc5bffffb676fffffa89ffff9cfbfffff4ffffff000000006e440000d6480000724a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -565,7 +565,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 740
     y: 91
-    width: 277
+    width: 278
     height: 625
   m_PersistentViewDataDictionary: {fileID: 0}
   m_PreviewResizer:

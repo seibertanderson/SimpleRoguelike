@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
@@ -13,6 +14,19 @@ public class PlayerScript : MonoBehaviour
     public float moveQuantity = .5f;
 
 
+    static bool created = false;
+    void Awake()
+    {
+        if (!created)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            created = true;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -74,5 +88,14 @@ public class PlayerScript : MonoBehaviour
             Destroy(col.gameObject);
         }
 
+        if (col.name.Equals("Level1Stairs"))
+        {
+            SceneManager.LoadScene("Dungeon1");
+        }
+
+        if (col.name.Equals("StairsupSurface"))
+        {
+            SceneManager.LoadScene("main");
+        }
     }
 }
