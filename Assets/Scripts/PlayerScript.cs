@@ -6,13 +6,17 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-
+    public int playerExperience = 0;
+    public int playerLevel = 0;
+    public int playerAttack = 1;
+    public int playerDefense = 1;
     public int playerLife;
     public Slider lifeBar;
 
-    private Rigidbody2D rb2d;
     public float moveQuantity = .5f;
+    private Rigidbody2D rb2d;
 
+    private Inventory inventory;
 
     static bool created = false;
     void Awake()
@@ -31,6 +35,7 @@ public class PlayerScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        inventory = GetComponent<Inventory>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -39,6 +44,25 @@ public class PlayerScript : MonoBehaviour
     {
         AtualizarUI();
         MoverJogadorTransform();
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            foreach (var item in inventory.items)
+            {
+                if (item != null)
+                {
+                    if (item.name.Equals("HealthPotion") && item.quantidade >= 1)
+                    {
+                        playerLife = 10;
+                        item.quantidade--;
+                        if (item.quantidade == 0)
+                        {
+                            inventory.RemoveItem(item);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -73,7 +97,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     public Item woodSword;
-    public Item healthBar;
+    public Item healthPotion;
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.name.Equals("woodSword"))
@@ -84,7 +108,8 @@ public class PlayerScript : MonoBehaviour
 
         if (col.name.Equals("healthPotion"))
         {
-            GetComponent<Inventory>().AddItem(healthBar);
+            healthPotion.quantidade++;
+            GetComponent<Inventory>().AddItem(healthPotion);
             Destroy(col.gameObject);
         }
 
@@ -96,6 +121,14 @@ public class PlayerScript : MonoBehaviour
         if (col.name.Equals("StairsupSurface"))
         {
             SceneManager.LoadScene("main");
+        }
+
+        if (col.name.Equals("#Spider"))
+        {
+            TurnBasedCombatStateMachine combat = FindObjectOfType<TurnBasedCombatStateMachine>();
+            combat.battle = true;
+            combat.player = this;
+            combat.enemy = col.gameObject.GetComponent<EnemyScript>();
         }
     }
 }
