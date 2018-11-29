@@ -58,10 +58,21 @@ public class PlayerScript : MonoBehaviour
         lifeBar.value = playerLife;
     }
 
-    public Item item;
+    public Item woodSword;
+    public Item healthBar;
     private void OnTriggerEnter2D(Collider2D col)
     {
-        GetComponent<Inventory>().AddItem(item);
-        Destroy(col.gameObject);
+        if (col.name.Equals("woodSword"))
+        {
+            GetComponent<Inventory>().AddItem(woodSword);
+            Destroy(col.gameObject);
+        }
+
+        if (col.name.Equals("healthPotion"))
+        {
+            GetComponent<Inventory>().AddItem(healthBar);
+            Destroy(col.gameObject);
+        }
+
     }
 }
