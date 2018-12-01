@@ -11,8 +11,8 @@ public class PlayerScript : MonoBehaviour
     public int playerAttack = 1;
     public int playerDefense = 1;
     public int playerLife;
+    public bool playerTurn = true;
     public Slider lifeBar;
-
     public float moveQuantity = .5f;
     private Rigidbody2D rb2d;
 
@@ -71,25 +71,31 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-
     public void MoverJogadorTransform()
     {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            transform.position = new Vector2(transform.position.x - moveQuantity, transform.position.y);
-        }
-        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            transform.position = new Vector2(transform.position.x + moveQuantity, transform.position.y);
-        }
-        else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            transform.position = new Vector2(transform.position.x, transform.position.y + moveQuantity);
-        }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            transform.position = new Vector2(transform.position.x, transform.position.y - moveQuantity);
-        }
+        //if (playerTurn)
+        //{
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                transform.position = new Vector2(transform.position.x - moveQuantity, transform.position.y);
+                playerTurn = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                transform.position = new Vector2(transform.position.x + moveQuantity, transform.position.y);
+                playerTurn = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y + moveQuantity);
+                playerTurn = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y - moveQuantity);
+                playerTurn = false;
+            }
+        //}
     }
     public void AtualizarUI()
     {
