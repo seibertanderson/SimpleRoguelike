@@ -11,14 +11,14 @@ public class PlayerScript : MonoBehaviour
     public int playerAttack = 1;
     public int playerDefense = 1;
     public int playerLife;
-    public bool playerTurn = true;
-    public Slider lifeBar;
-    public float moveQuantity = .5f;
-    private Rigidbody2D rb2d;
-
-    private Inventory inventory;
-
+    public float walkSpeed = 3;
     static bool created = false;
+    public Slider lifeBar;
+    private bool facingRight = true;
+    private Rigidbody2D rb2d;
+    private Inventory inventory;
+    private Animator animator;
+
     void Awake()
     {
         if (!created)
@@ -37,66 +37,9 @@ public class PlayerScript : MonoBehaviour
     {
         inventory = GetComponent<Inventory>();
         rb2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        AtualizarUI();
-        MoverJogadorTransform();
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            foreach (var item in inventory.items)
-            {
-                if (item != null)
-                {
-                    if (item.name.Equals("HealthPotion") && item.quantidade >= 1)
-                    {
-                        playerLife = 10;
-                        item.quantidade--;
-                        if (item.quantidade == 0)
-                        {
-                            inventory.RemoveItem(item);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private void FixedUpdate()
-    {
-
-    }
-
-
-    public void MoverJogadorTransform()
-    {
-        //if (playerTurn)
-        //{
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                transform.position = new Vector2(transform.position.x - moveQuantity, transform.position.y);
-                playerTurn = false;
-            }
-            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                transform.position = new Vector2(transform.position.x + moveQuantity, transform.position.y);
-                playerTurn = false;
-            }
-            else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                transform.position = new Vector2(transform.position.x, transform.position.y + moveQuantity);
-                playerTurn = false;
-            }
-            else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                transform.position = new Vector2(transform.position.x, transform.position.y - moveQuantity);
-                playerTurn = false;
-            }
-        //}
-    }
     public void AtualizarUI()
     {
         lifeBar.value = playerLife;
@@ -129,12 +72,56 @@ public class PlayerScript : MonoBehaviour
             SceneManager.LoadScene("main");
         }
 
-        if (col.name.Equals("#Spider"))
+    }
+
+
+    public void MovePlayer()
+    {
+        float hor = Input.GetAxis("Horizontal");
+        float ver = Input.GetAxis("Vertical");
+        if (hor > 0 || ver > 0 || hor < 0 || ver < 0)
         {
-            TurnBasedCombatStateMachine combat = FindObjectOfType<TurnBasedCombatStateMachine>();
-            combat.battle = true;
-            combat.player = this;
-            combat.enemy = col.gameObject.GetComponent<EnemyScript>();
+            animator.SetBool("walking", true);
+        }
+        else
+        {
+            animator.SetBool("walking", false);
+        }
+        Vector2 move = new Vector2(hor, ver);
+        move = move.normalized * walkSpeed;
+        rb2d.velocity = move;
+        if ((hor < 0f && facingRight) || (hor > 0f && !facingRight))
+        {
+            FlipPlayer();
+        }
+    }
+
+
+    void FlipPlayer()
+    {
+        facingRight = !facingRight;
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y);
+    }
+
+    public void UseHealthPotion()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            foreach (var item in inventory.items)
+            {
+                if (item != null)
+                {
+                    if (item.name.Equals("HealthPotion") && item.quantidade >= 1)
+                    {
+                        playerLife = 10;
+                        item.quantidade--;
+                        if (item.quantidade == 0)
+                        {
+                            inventory.RemoveItem(item);
+                        }
+                    }
+                }
+            }
         }
     }
 }

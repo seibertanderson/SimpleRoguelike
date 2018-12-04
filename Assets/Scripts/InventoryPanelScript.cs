@@ -8,15 +8,12 @@ public class InventoryPanelScript : MonoBehaviour
 
     public GameObject panelInventory;
     public GameObject panelPlayerStats;
-
     public Text playerLife;
     public Text playerExperience;
     public Text playerLevel;
     public Text playerDefense;
     public Text playerAttack;
-
     private PlayerScript player;
-
 
     // Use this for initialization
     void Start()

@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-
     private Vector2 velocity;
-
     public Transform player;
-
     public float smoothTimeX = .2f;
     public float smoothTimeY = .2f;
-
     static bool created = false;
+
     void Awake()
     {
         if (!created)
