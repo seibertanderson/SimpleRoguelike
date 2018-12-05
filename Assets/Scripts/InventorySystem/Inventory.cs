@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    public const int numItemSlots = 5;
     public Image[] itemImages = new Image[numItemSlots];
     public Item[] items = new Item[numItemSlots];
-    public const int numItemSlots = 4;
 
     public void AddItem(Item itemToAdd)
     {

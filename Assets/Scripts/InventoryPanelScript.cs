@@ -34,11 +34,11 @@ public class InventoryPanelScript : MonoBehaviour
             panelPlayerStats.SetActive(!panelPlayerStats.activeInHierarchy);
         }
 
-        playerLife.text = "Life " + player.playerLife;
-        playerExperience.text = "Exp " + player.playerExperience;
-        playerLevel.text = "Lvl " + player.playerLevel;
-        playerDefense.text = "Def " + player.playerDefense;
-        playerAttack.text = "Atk " + player.playerAttack;
+        //playerLife.text = "Life " + player.playerLife;
+        //playerExperience.text = "Exp " + player.playerExperience;
+        //playerLevel.text = "Lvl " + player.playerLevel;
+        //playerDefense.text = "Def " + player.playerDefense;
+        //playerAttack.text = "Atk " + player.playerAttack;
 
     }
 

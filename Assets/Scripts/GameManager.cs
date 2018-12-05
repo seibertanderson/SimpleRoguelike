@@ -7,9 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance = null;
-
-    public PlayerScript playerScript;
+    public static GameManager instance = null;  
 
     void Awake()
     {
@@ -27,7 +25,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        playerScript.AtualizarUI();
-        playerScript.MovePlayer();
+
     }
 }
