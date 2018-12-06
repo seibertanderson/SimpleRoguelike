@@ -39,21 +39,6 @@ public class EnemyScript : MonoBehaviour
 
     public void MoveEnemy()
     {
-        //float hor = Input.GetAxis("Horizontal");
-        //float ver = Input.GetAxis("Vertical");       
-        //Vector2 move = new Vector2(hor, ver);
-        //move = move.normalized * walkSpeed;
-        //rb2d.velocity = move;
-        //if ((hor < 0f && facingRight) || (hor > 0f && !facingRight))
-        //{
-        //    FlipEnemy();
-        //}
-        //var direction = Vector3.zero;
-        //if (Vector3.Distance(transform.position, target.position) > distanceToStop)
-        //{
-        //    direction = target.position - transform.position;
-        //    rigidbody.AddRelativeForce(direction.normalized * speed, ForceMode.Force);
-        //}
         Vector2 newPosition = Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * walkSpeed);
         rb2d.MovePosition(newPosition);
         if ((rb2d.velocity.x < 0f && facingRight) || (rb2d.velocity.x > 0f && !facingRight))

@@ -12,23 +12,18 @@ public class PlayerScript : MonoBehaviour
     public int playerDefense = 1;
     public int playerLife;
     public float walkSpeed = 3;
-
     public GameObject attackPrefab;
     public Transform attackSpawnPoint;
-
     static bool created = false;
     private bool invunarable = false;
     private bool facingRight = true;
     private bool attacking = false;
-
     public Slider lifeBar;
     private Rigidbody2D rb2d;
     private Animator animator;
     private SpriteRenderer sprite;
-
     private Inventory inventory;
     private CameraScript cameraScript;
-
     public AudioClip fxAttack;
 
     void Awake()
@@ -66,8 +61,6 @@ public class PlayerScript : MonoBehaviour
             SoundManager.instance.PlaySound(fxAttack);
             StartCoroutine(Attack());
         }
-
-
     }
 
     public void AtualizarUI()
@@ -95,13 +88,6 @@ public class PlayerScript : MonoBehaviour
 
         if (col.CompareTag("Enemy"))
         {
-            // empurrar objeto para posição contraria            
-            //col.GetContacts(contacts);
-            //Vector3 dir = contacts[0].point - (Vector2)transform.position;            
-            //dir = -dir.normalized;           
-            //rb2d.AddForce(dir * -2000f);
-
-
             DamagePlayer(col.GetComponent<Collider2D>().gameObject);
         }
 
@@ -182,8 +168,6 @@ public class PlayerScript : MonoBehaviour
 
     public IEnumerator Attack()
     {
-
-
         attacking = true;
         rb2d.velocity = Vector2.zero;
         GameObject cloneAttack = Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation);
@@ -191,7 +175,7 @@ public class PlayerScript : MonoBehaviour
         {
             cloneAttack.transform.eulerAngles = new Vector3(180, 0, 180);
         }
-        //cloneAttack.transform.parent = transform;
+    
         animator.SetTrigger("punch");
         yield return new WaitForSeconds(.5f);
         attacking = false;
@@ -201,8 +185,6 @@ public class PlayerScript : MonoBehaviour
     IEnumerator DamageEffect()
     {
         cameraScript.ShakeCamera(0.5f, 0.04f);
-
-
         for (float i = 0f; i < 1f; i += 0.1f)
         {
             sprite.enabled = false;
