@@ -10,7 +10,7 @@ public class EnemyScript : MonoBehaviour
     public int enemyDefense = 1;
     public int enemyLife;
     public Slider lifeBar;
-    public float walkSpeed = 2;    
+    public float walkSpeed = 2;
     private Rigidbody2D rb2d;
     private Transform playerTarget;
     private PlayerScript playerScript;
@@ -71,8 +71,7 @@ public class EnemyScript : MonoBehaviour
     IEnumerator DamageEffect()
     {
         float actualSpeed = walkSpeed;
-        walkSpeed *= -1;
-        rb2d.AddForce(new Vector2(transform.position.x * -200f, transform.position.y * -200f));
+        walkSpeed *= -1.5f;
         sprite.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         walkSpeed = actualSpeed;
