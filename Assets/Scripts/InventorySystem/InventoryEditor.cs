@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-
 [CustomEditor(typeof(Inventory))]
 public class InventoryEditor : Editor
 {
@@ -40,3 +38,4 @@ public class InventoryEditor : Editor
         EditorGUILayout.EndVertical();
     }
 }
+#endif

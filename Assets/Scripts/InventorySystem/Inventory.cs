@@ -35,4 +35,11 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+    public void RemoveItem2(int i)
+    {
+        items[i] = null;
+        itemImages[i].sprite = null;
+        itemImages[i].enabled = false;
+        return;
+    }
 }

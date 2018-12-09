@@ -1,25 +1,25 @@
-using UnityEditor;
-class DesktopBuilder {
-    static void buildDesktop() {
+//using UnityEditor;
+//class DesktopBuilder {
+//    static void buildDesktop() {
 
-        // Place all your scenes here
-        string[] scenes = {"Assets/Scenes/main.unity"};
+//        // Place all your scenes here
+//        string[] scenes = {"Assets/Scenes/main.unity"};
 
-        string pathToDeploy = "builds/WebGLversion/";       
+//        string pathToDeploy = "builds/WebGLversion/";       
 
-        BuildPipeline.BuildPlayer(scenes, pathToDeploy, BuildTarget.WebGL, BuildOptions.None);      
-    }
+//        BuildPipeline.BuildPlayer(scenes, pathToDeploy, BuildTarget.WebGL, BuildOptions.None);      
+//    }
 
-        static void buildWebgl() {
+//        static void buildWebgl() {
 
-        // Place all your scenes here
-        string[] scenes = {"Assets/Scenes/main.unity"};
+//        // Place all your scenes here
+//        string[] scenes = {"Assets/Scenes/main.unity"};
 
-        string pathToDeploy = "builds/WebGLversion/";       
+//        string pathToDeploy = "builds/WebGLversion/";       
 
-        BuildPipeline.BuildPlayer(scenes, pathToDeploy, BuildTarget.WebGL, BuildOptions.None);      
-    }
-}
+//        BuildPipeline.BuildPlayer(scenes, pathToDeploy, BuildTarget.WebGL, BuildOptions.None);      
+//    }
+//}
 
 /** 
 https://docs.unity3d.com/Manual/CommandLineArguments.html
