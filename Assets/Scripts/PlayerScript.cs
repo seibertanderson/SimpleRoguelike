@@ -175,7 +175,7 @@ public class PlayerScript : MonoBehaviour
         {
             cloneAttack.transform.eulerAngles = new Vector3(180, 0, 180);
         }
-    
+
         animator.SetTrigger("punch");
         yield return new WaitForSeconds(.5f);
         attacking = false;
@@ -185,6 +185,12 @@ public class PlayerScript : MonoBehaviour
     IEnumerator DamageEffect()
     {
         cameraScript.ShakeCamera(0.5f, 0.04f);
+        float actualSpeed = walkSpeed;
+        walkSpeed *= -1.5f;
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        walkSpeed = actualSpeed;
+        sprite.color = Color.white;
         for (float i = 0f; i < 1f; i += 0.1f)
         {
             sprite.enabled = false;
@@ -199,13 +205,8 @@ public class PlayerScript : MonoBehaviour
     {
         if (!invunarable)
         {
-
-            //if (rb2d.velocity.normalized.x == 0 || rb2d.velocity.normalized.y == 0)
-            //{
-            //    rb2d.velocity = new Vector2(1, 1);
-            //}
-            Vector3 forceVec = -enemy.GetComponent<Rigidbody2D>().velocity.normalized * 2000f;
-            rb2d.AddForce(forceVec, ForceMode2D.Force);
+            //Vector3 forceVec = -enemy.GetComponent<Rigidbody2D>().velocity.normalized * 2000f;
+            //rb2d.AddForce(forceVec, ForceMode2D.Force);
             invunarable = true;
             playerLife--;
             StartCoroutine(DamageEffect());

@@ -233,6 +233,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Attack.cs" />
     <Compile Include="Assets\Scripts\CameraScript.cs" />
+    <Compile Include="Assets\Scripts\DesktopBuilder.cs" />
     <Compile Include="Assets\Scripts\Dungeon1Loader.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
