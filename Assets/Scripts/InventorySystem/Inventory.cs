@@ -13,12 +13,22 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i] == null)
+            /* se ja possui o item adiciona a quantidade */
+            if (items[i] != null && items[i].name == itemToAdd.name)
             {
-                items[i] = itemToAdd;
-                itemImages[i].sprite = itemToAdd.sprite;
-                itemImages[i].enabled = true;
+                items[i].quantidade = items[i].quantidade + 1;
                 return;
+            }
+            else /* se ainda nao tem o item adiciona no slot */
+            {
+                if (items[i] == null)
+                {
+                    itemToAdd.quantidade = 1;
+                    items[i] = itemToAdd;
+                    itemImages[i].sprite = itemToAdd.sprite;
+                    itemImages[i].enabled = true;
+                    return;
+                }
             }
         }
     }

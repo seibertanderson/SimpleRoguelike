@@ -22,7 +22,7 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D rb2d;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    private Inventory inventory;
+    public Inventory inventory;
     private CameraScript cameraScript;
     public AudioClip fxAttack;
 
@@ -58,8 +58,8 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            SoundManager.instance.PlaySound(fxAttack);
-            StartCoroutine(Attack());
+            //SoundManager.instance.PlaySound(fxAttack);
+            //StartCoroutine(Attack());
         }
     }
 
@@ -69,6 +69,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     public Item woodSword;
+    public Item woodBow;
     public Item healthPotion;
     ContactPoint2D[] contacts = new ContactPoint2D[2];
     private void OnTriggerEnter2D(Collider2D col)
@@ -78,10 +79,13 @@ public class PlayerScript : MonoBehaviour
             GetComponent<Inventory>().AddItem(woodSword);
             Destroy(col.gameObject);
         }
-
-        if (col.name.Equals("healthPotion"))
+        if (col.name.Equals("woodBow"))
         {
-            healthPotion.quantidade++;
+            GetComponent<Inventory>().AddItem(woodBow);
+            Destroy(col.gameObject);
+        }
+        if (col.name.Equals("healthPotion"))
+        {            
             GetComponent<Inventory>().AddItem(healthPotion);
             Destroy(col.gameObject);
         }
@@ -113,26 +117,12 @@ public class PlayerScript : MonoBehaviour
     {
         facingRight = !facingRight;
         spriteRenderer.flipX = !facingRight;
+        transform.GetChild(0).transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y);
         //transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y);
     }
 
     public void UseInventoryItem(int index)
     {
-        //foreach (var item in inventory.items)
-        //{
-        //    if (item != null)
-        //    {
-        //        if (item.name.Equals("HealthPotion") && item.quantidade >= 1)
-        //        {
-        //            playerLife = 10;
-        //            item.quantidade--;
-        //            if (item.quantidade == 0)
-        //            {
-        //                inventory.RemoveItem(item);
-        //            }
-        //        }
-        //    }
-        //}
         if (inventory.items[index] != null)
         {
             if (inventory.items[index].name.Equals("HealthPotion") && inventory.items[index].quantidade >= 1)
@@ -143,7 +133,10 @@ public class PlayerScript : MonoBehaviour
                 //{
                 //    inventory.RemoveItem(inventory.items[index]);
                 //}
-                inventory.RemoveItem2(index);
+                if (inventory.items[index].quantidade == 0)
+                {
+                    inventory.RemoveItem2(index);
+                }
             }
         }
     }
