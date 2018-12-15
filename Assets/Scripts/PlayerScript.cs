@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviour
     public int playerLife;
     public float walkSpeed = 3;
     public GameObject attackPrefab;
-    public Transform attackSpawnPoint;
+    public GameObject attackSpawnPoint;
     static bool created = false;
     private bool invunarable = false;
     private bool facingRight = true;
@@ -59,13 +59,16 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             //SoundManager.instance.PlaySound(fxAttack);
-            //StartCoroutine(Attack());
+            StartCoroutine(Attack());
         }
     }
 
     public void AtualizarUI()
     {
-        lifeBar.value = playerLife;
+        if (lifeBar != null)
+        {
+            lifeBar.value = playerLife;
+        }
     }
 
     public Item woodSword;
@@ -85,7 +88,7 @@ public class PlayerScript : MonoBehaviour
             Destroy(col.gameObject);
         }
         if (col.name.Equals("healthPotion"))
-        {            
+        {
             GetComponent<Inventory>().AddItem(healthPotion);
             Destroy(col.gameObject);
         }
@@ -179,16 +182,20 @@ public class PlayerScript : MonoBehaviour
     {
         attacking = true;
         rb2d.velocity = Vector2.zero;
-        GameObject cloneAttack = Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation);
+        GameObject cloneAttack = Instantiate(attackPrefab, attackSpawnPoint.transform.position, Quaternion.identity);
+        cloneAttack.transform.parent = attackSpawnPoint.transform;
+        cloneAttack.transform.position = new Vector2(attackSpawnPoint.transform.position.x, attackSpawnPoint.transform.position.y);
+        //cloneAttack.transform.parent = attackSpawnPoint.transform;
+        //cloneAttack.transform.position = attackSpawnPoint.transform.position;
         if (!facingRight)
         {
-            cloneAttack.transform.eulerAngles = new Vector3(180, 0, 180);
+            //cloneAttack.transform.eulerAngles = new Vector3(180, 0, 180);
         }
 
         animator.SetTrigger("punch");
         yield return new WaitForSeconds(.5f);
         attacking = false;
-
+        Destroy(cloneAttack, .2f);
     }
 
     IEnumerator DamageEffect()
